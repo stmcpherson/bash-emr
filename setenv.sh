@@ -87,6 +87,11 @@ function emrlogin {
  HOST=`emrhost $1`
  ssh $EMR_SSH_OPTS "hadoop@$HOST"
 }
+
+function emrcmd {
+ HOST=`emrhost`
+ ssh $EMR_SSH_OPTS "hadoop@$HOST" $1
+}
  
 function emrproxy {
  HOST=`emrhost $1`
@@ -99,7 +104,7 @@ function emrproxy {
 }
 
 function emrlist {
- emr list-clusters --query Clusters[*].[Id,Name,Status.State] 
+ emr list-clusters --query Clusters[*].[Id,Name,Status.State]
 }
 
 function emractive {
